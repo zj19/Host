@@ -1,0 +1,101 @@
+
+sudo -i
+
+DB data are in /usr/local/mysql/data
+
+#local environment
+mysql -u root
+
+#remote environment
+mysql --host=173.194.109.15 --user=root --password  (last+app)
+
+CREATE DATABASE hostappDB;
+USE hostappDB;
+
+SHOW TABLES;
+
+DESCRIBE userinfo;
+
+CREATE TABLE IF NOT EXISTS userinfo (
+  user_id INT NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(45) DEFAULT NULL,
+  last_name VARCHAR(45) DEFAULT NULL, 
+  email VARCHAR(100) DEFAULT NULL,
+  street VARCHAR(100) DEFAULT NULL,
+  city VARCHAR(45) DEFAULT NULL,
+  state VARCHAR(45) DEFAULT NULL,
+  country VARCHAR(45) DEFAULT NULL,
+  zip int(11) DEFAULT NULL,
+  start_date DATE DEFAULT NULL,
+  status tinyint(2),
+  linkedin VARCHAR(100) DEFAULT NULL,
+  facebook VARCHAR(100) DEFAULT NULL,
+  twitter VARCHAR(100) DEFAULT NULL,
+  PRIMARY KEY (user_id)
+) ENGINE=InnoDB
+
+
+CREATE TABLE IF NOT EXISTS eventinfo (
+  event_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  event_name varchar(200) DEFAULT NULL,
+  details varchar (200) DEFAULT NULL
+) ENGINE=InnoDB
+
+
+CREATE TABLE IF NOT EXISTS skillinfo (
+  skill_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  skill_name varchar(200) DEFAULT NULL,
+  start_date DATE DEFAULT NULL,
+  status tinyint(2)
+) ENGINE=InnoDB
+
+
+CREATE TABLE IF NOT EXISTS userevent (
+  user_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  event_id int(11)
+) ENGINE=InnoDB
+
+CREATE TABLE IF NOT EXISTS userskillneeds (
+  user_id int(11) NOT NULL,
+  skill_id int(11) NOT NULL, 
+  hasorneeds BIT,  
+  status tinyint(2),
+  FOREIGN KEY fk_user(user_id)
+  REFERENCES userinfo(user_id)
+) ENGINE=InnoDB
+
+CREATE TABLE IF NOT EXISTS hostlog (
+  user1_id int(11) PRIMARY KEY,
+  user2_id int(11),
+  event_id int(11),
+  status tinyint(2)
+) ENGINE=InnoDB
+
+
+CREATE TABLE guestbooktest (
+  entryID INT NOT NULL AUTO_INCREMENT,
+  guestName VARCHAR(255),
+  content VARCHAR(255),
+  PRIMARY KEY(entryID)
+);
+
+
+BigDataApril
+
+
+
+DROP DATABASE hostappDB;
+
+DROP TABLE IF EXISTS userinfo;
+DROP TABLE IF EXISTS eventinfo;
+DROP TABLE IF EXISTS skillinfo;
+DROP TABLE IF EXISTS userevent;
+DROP TABLE IF EXISTS userskillneeds;
+DROP TABLE IF EXISTS hostlog;
+
+
+
+
+
+
+

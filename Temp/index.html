@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <body>
+    {% for greeting in greetings %}
+      {% if greeting.author %}
+        <b>{{ greeting.author.nickname() }}</b> wrote:
+      {% else %}
+       An anonymous person wrote:
+      {% endif %}
+      <blockquote>{{ greeting.content }}</blockquote>
+    {% endfor %}
+
+    <br /> No more messages!
+    <hr>
+
+      <br />
+      <br /><strong>Sign the guestbook!</strong>
+      <form action="/sign?guestbook_name={{ guestbook_name }}" method="post">
+        <div>First Name: <input type="text" name="first_name" style="border: 1px solid black"></div>
+        <div>First Name: <input type="text" name="last_name" style="border: 1px solid black"></div>
+        <div>First Name: <input type="text" name="email" style="border: 1px solid black"></div>
+        <div>First Name: <input type="text" name="street" style="border: 1px solid black"></div>
+        <div>First Name: <input type="text" name="city" style="border: 1px solid black"></div>
+        <div>First Name: <input type="text" name="state" style="border: 1px solid black"></div>
+        <div>First Name: <input type="text" name="country" style="border: 1px solid black"></div>
+        <div>First Name: <input type="text" name="linkedin" style="border: 1px solid black"></div>
+        <div>First Name: <input type="text" name="twitter" style="border: 1px solid black"></div>
+        <div>First Name: <input type="text" name="fname" style="border: 1px solid black"></div>
+        <div>Message: <br /><textarea name="content" rows="3" cols="60"></textarea></div>
+        <div><input type="submit" value="Sign Guestbook"></div>
+      </form>
+
+
+    <form>Guestbook name:
+      <input value="{{ guestbook_name }}" name="guestbook_name">
+      <input type="submit" value="switch book">
+    </form>
+
+    <a href="{{ url|safe }}">{{ url_linktext }}</a>
+
+  </body>
+</html>
+{% endautoescape %}
+
+

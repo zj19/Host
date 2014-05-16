@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Guestbook!</title>
+  </head>
+  <body>
+    <body>
+      <table style="border: 1px solid black">
+        <tbody>
+          <tr>
+            <th width="35%" style="background-color: #CCFFCC; margin: 5px">First Name</th>
+            <th style="background-color: #CCFFCC; margin: 5px">Last Name</th>
+            <th style="background-color: #CCFFCC; margin: 5px">ID</th>
+            <th style="background-color: #CCFFCC; margin: 5px">Start date</th>
+            <th style="background-color: #CCFFCC; margin: 5px">email</th>
+            <th style="background-color: #CCFFCC; margin: 5px">city</th>
+            <th style="background-color: #CCFFCC; margin: 5px">LinkedIn</th>
+            <th style="background-color: #CCFFCC; margin: 5px">Interests</th>
+          </tr>
+          {% for guest in guestlist %}
+             <tr>
+               <td>{{ guest['firstname'] }}</td>
+               <td>{{ guest['lastname'] }}</td>
+               <td>{{ guest['ID'] }}</td>
+               <td>{{ guest['startdate'] }}</td>
+               <td>{{ guest['email'] }}</td>
+               <td>{{ guest['city'] }}</td>
+               <td>{{ guest['LinkedIn'] }}</td>
+               <td>{{ guest['SkillsInterests'] }}</td>
+             </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br /> No more messages!
+      <br /><strong>Sign the guestbook!</strong>
+      <form action="/sign" method="post">
+        <div>First Name: <input type="text" name="first_name" style="border: 1px solid black"></div>
+        <div>Last Name: <input type="text" name="last_name" style="border: 1px solid black"></div>
+        <div>Email: <input type="text" name="email" style="border: 1px solid black"></div>
+        <div>Street: <input type="text" name="street" style="border: 1px solid black"></div>
+        <div>City: <input type="text" name="city" style="border: 1px solid black"></div>
+        <div>State: <input type="text" name="state" style="border: 1px solid black"></div>
+        <div>Country: <input type="text" name="country" style="border: 1px solid black"></div>
+        <div>LinkedIn Profile: <input type="text" name="linkedin" style="border: 1px solid black"></div>
+        <div>Message: <br /><textarea name="content" rows="3" cols="60"></textarea></div>
+        <div><input type="submit" value="Sign Guestbook"></div>
+      </form>
+  </body>
+</html>
+
+
